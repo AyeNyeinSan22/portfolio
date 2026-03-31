@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const profile = {
   name: 'Aye Nyein San',
   role: 'Web Developer',
@@ -24,28 +26,28 @@ const organizations = [
     title: 'Intern Plus Myanmar',
     period: '2021 March - 2022',
     role: 'Web Developer',
-    image: '/organizations/intern-plus.png',
+    image: asset('organizations/intern-plus.png'),
     link: 'https://web.facebook.com/myanmarinternplus',
   },
   {
     title: 'Women AI in Myanmar',
     period: '2022 March - 2023',
     role: 'Tech Article Editor',
-    image: '/organizations/women-ai.png',
+    image: asset('organizations/women-ai.png'),
     link: 'https://web.facebook.com/womeninaimyanmar',
   },
   {
     title: 'VarCamp',
     period: '2023 March - Present',
     role: 'Organizer, Developer',
-    image: '/organizations/varcamp.png',
+    image: asset('organizations/varcamp.png'),
     link: 'https://web.facebook.com/VarCamp',
   },
   {
     title: 'Cursor/Circuit',
     period: 'Student Organization',
     role: 'Java Student Mentor',
-    image: '/organizations/circuit-java-horizontal.jpeg',
+    image: asset('organizations/circuit-java-horizontal.jpeg'),
     imageMode: 'contain',
     imageWrapper: 'bg-slate-100 dark:bg-slate-900/90',
     link: 'https://web.facebook.com/CURSORBatStateU',
@@ -60,7 +62,7 @@ const projects = [
     description:
       'A social media platform where users can create accounts, post content, comment, like, unlike, and receive real-time notifications.',
     accent: 'violet',
-    image: '/projects/social-media.png',
+    image: asset('projects/social-media.png'),
     highlights: ['Real-time notifications', 'Account and post flows', 'Docker-based media handling'],
   },
   {
@@ -70,7 +72,7 @@ const projects = [
     description:
       'A movie discovery experience that lets users browse categories, actors, film history, and titles in a cleaner way.',
     accent: 'cyan',
-    image: '/projects/movie-application.png',
+    image: asset('projects/movie-application.png'),
     highlights: ['Category-based browsing', 'Actor and title exploration', 'Clean search experience'],
   },
   {
@@ -80,7 +82,7 @@ const projects = [
     description:
       'An environmental awareness site focused on sustainability, eco-friendly products, and community learning around reduction, reuse, and recycling.',
     accent: 'pink',
-    image: '/projects/save-our-planet.png',
+    image: asset('projects/save-our-planet.png'),
     highlights: ['Advocacy-driven design', 'Environmental storytelling', 'Community awareness focus'],
   },
   {
@@ -90,7 +92,7 @@ const projects = [
     description:
       'A study and note-management platform with reminders, schedules, and organized learning resources designed to make coursework easier to manage.',
     accent: 'gold',
-    image: '/projects/eduhub.png',
+    image: asset('projects/eduhub.png'),
     highlights: ['Schedule and reminder flow', 'Learning resource organization', 'Student-focused interface'],
   },
 ];
@@ -314,7 +316,7 @@ function App() {
             <div className="absolute bottom-3 h-20 w-[72%] rounded-full bg-gradient-to-r from-fuchsia-500/30 via-violet-500/30 to-cyan-400/25 blur-2xl pulse-glow" />
             <div className="portrait-shell relative overflow-hidden rounded-[2rem] border border-white/50 bg-gradient-to-b from-white/80 to-fuchsia-100/60 p-2 shadow-2xl dark:border-white/10 dark:bg-white/5">
               <img
-                src="/portrait.jpeg"
+                src={asset('portrait.jpeg')}
                 alt="Aye Nyein San portrait"
                 className="portrait-image h-[320px] w-[260px] rounded-[1.5rem] object-cover object-top transition duration-500 hover:scale-[1.03] sm:h-[360px] sm:w-[290px] lg:h-[420px] lg:w-[320px]"
               />
