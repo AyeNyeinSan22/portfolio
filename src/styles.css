@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .nav-shell {
+    @apply flex flex-wrap items-center justify-between gap-4 rounded-[1.75rem] border border-white/70 bg-white/72 px-4 py-3 shadow-[0_24px_70px_rgba(148,163,184,0.22)] backdrop-blur-2xl transition-colors dark:border-white/10 dark:bg-slate-950/58 dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)];
+  }
+
+  .nav-brand {
+    @apply flex items-center gap-3;
+  }
+
+  .nav-brand-mark {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-black text-white shadow-[0_0_28px_rgba(168,85,247,0.25)];
+  }
+
+  .nav-brand-copy {
+    @apply flex flex-col;
+  }
+
+  .nav-brand-copy strong {
+    @apply text-sm font-bold tracking-[0.02em] text-slate-900 dark:text-white;
+  }
+
+  .nav-brand-copy span {
+    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400;
+  }
+
+  .nav-links {
+    @apply flex flex-1 flex-wrap items-center justify-center gap-2;
+  }
+
+  .nav-link {
+    @apply relative inline-flex items-center rounded-full px-4 py-2.5 text-sm font-semibold transition duration-300;
+  }
+
+  .nav-link-idle {
+    @apply text-slate-600 hover:-translate-y-0.5 hover:bg-fuchsia-500/10 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-fuchsia-500/10 dark:hover:text-white;
+  }
+
+  .nav-link-active {
+    @apply bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.22)];
+  }
+
+  .nav-actions {
+    @apply flex items-center justify-end;
+  }
+
+  .nav-theme-toggle {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-fuchsia-400/30 bg-white/80 text-slate-800 transition duration-300 hover:-translate-y-0.5 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.15)] dark:border-cyan-400/20 dark:bg-slate-900/90 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:shadow-[0_0_30px_rgba(34,211,238,0.12)];
+  }
+
+  .portrait-shell {
+    animation: portrait-float 7.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .portrait-image {
+    animation: portrait-drift 9s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .portrait-orbit {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(6px);
+  }
+
+  .portrait-orbit-one {
+    top: 10%;
+    right: 8%;
+    width: 88px;
+    height: 88px;
+    border: 1px solid rgba(217, 70, 239, 0.24);
+    background: radial-gradient(circle, rgba(217, 70, 239, 0.18), transparent 68%);
+    animation: orbit-one 10s linear infinite;
+  }
+
+  .portrait-orbit-two {
+    bottom: 16%;
+    left: 4%;
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(34, 211, 238, 0.24);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 68%);
+    animation: orbit-two 8.5s linear infinite;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 4.8s ease-in-out infinite;
+  }
+
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(36px) scale(0.985);
+    transition:
+      opacity 700ms ease,
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+  }
+
+  .reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .progress-track {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 60;
+    height: 4px;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #d946ef 0%, #8b5cf6 55%, #22d3ee 100%);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.35);
+    transition: width 120ms linear;
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 72%);
+    opacity: 0.16;
+  }
+
+  .dark .grid-overlay {
+    opacity: 0.1;
+  }
+
+  .float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+
+  .float-delayed {
+    animation: float-delayed 11s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    .nav-shell {
+      @apply justify-center;
+    }
+
+    .nav-brand,
+    .nav-actions {
+      @apply w-full justify-center;
+    }
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(18px, -20px, 0);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-16px, 22px, 0);
+  }
+}
+
+@keyframes portrait-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(1deg);
+  }
+}
+
+@keyframes portrait-drift {
+  0%,
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.02) translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes orbit-one {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(-16px, 10px, 0) scale(1.08);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes orbit-two {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(18px, -10px, 0) scale(1.12);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.08);
+  }
+}
